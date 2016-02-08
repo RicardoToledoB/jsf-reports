@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.proyecto.bean;
 
 import com.proyecto.model.Usuario;
@@ -17,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRDataSource;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -41,7 +37,7 @@ public class UsuarioBean implements Serializable {
     }
 
     public List<Usuario> getLista() {
-        lista=uService.list();
+        lista = uService.list();
         return lista;
     }
 
@@ -50,9 +46,13 @@ public class UsuarioBean implements Serializable {
     }
 
     public void init() throws JRException {
-        JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(lista,false);
+        JRDataSource beanDataSource = new JRBeanCollectionDataSource(lista);
         String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("reportes/report3.jasper");
-        jasperPrint = JasperFillManager.fillReport(reportPath, new HashMap(), beanCollectionDataSource);
+
+         jasperPrint = JasperFillManager.fillReport( reportPath ,new HashMap() , beanDataSource );
+        
+        //JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(lista, false);
+        //jasperPrint = JasperFillManager.fillReport(reportPath, new HashMap(), beanCollectionDataSource);
     }
 
     public void PDF() throws JRException, IOException {
