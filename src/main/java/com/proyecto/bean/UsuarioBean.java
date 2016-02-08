@@ -51,7 +51,7 @@ public class UsuarioBean implements Serializable {
 
     public void init() throws JRException {
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(lista,false);
-        String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("report3.jasper");
+        String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("reportes/report3.jasper");
         jasperPrint = JasperFillManager.fillReport(reportPath, new HashMap(), beanCollectionDataSource);
     }
 
