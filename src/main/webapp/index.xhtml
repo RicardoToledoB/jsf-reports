@@ -9,6 +9,9 @@
     <h:body>
         <h:form>
             <h:commandButton  value="Exportar PDF" action="#{usuarioBean.PDF()}"/>
+            <h:commandButton  value="Exportar EXCEL" action="#{usuarioBean.EXCEL()}"/>
+            <h:commandButton  value="Exportar PPT" action="#{usuarioBean.PPT()}"/>
+            <h:commandButton  value="Exportar DOC" action="#{usuarioBean.DOC()}"/>
         </h:form>
         <h:dataTable value="#{usuarioBean.lista}" var="usuario">
             <h:column>
